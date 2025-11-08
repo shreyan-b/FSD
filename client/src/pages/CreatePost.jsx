@@ -68,6 +68,7 @@ const CreatePost = () => {
   };
 
   return (
+  
     <div className="post-form">
       <input
         className="post-title"

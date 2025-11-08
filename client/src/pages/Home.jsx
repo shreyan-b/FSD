@@ -111,6 +111,14 @@ const Home = () => {
           backgroundSize: "cover",
           backgroundPosition: "center",
           mt: 0,
+          paddingTop: 8,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "white",
+          textShadow: "2px 2px 4px rgba(0,0,0,0.7)",
+          
         }}
       />
       <Box

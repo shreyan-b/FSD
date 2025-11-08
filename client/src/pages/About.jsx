@@ -80,7 +80,7 @@ const About = () => {
         </Typography>
 
         <Link
-          href="https://github.com/your-github-username"
+          href="https://github.com/shreyan-b/FSD"
           target="_blank"
           rel="noopener"
           sx={{
@@ -111,7 +111,7 @@ const About = () => {
             <GitHubIcon fontSize="large" />
           </IconButton>
           <Typography sx={{ fontWeight: 700, fontSize: 18 }}>
-            your-github-username
+           
           </Typography>
         </Link>
       </Box>
