@@ -1,5 +1,5 @@
 import express from 'express';
-
+import cors from "cors";
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import authRoutes from './routes/auth.js';
@@ -7,32 +7,30 @@ import postRoutes from './routes/posts.js';
 import userRoutes from './routes/user.js';
 import path from "path";
 
+dotenv.config();
 
-const cors = require("cors");
+const app = express();   // ✅ Create app first
 
+// ✅ Use middleware AFTER creating app
 app.use(cors({
   origin: "*",
   credentials: true
 }));
 
-dotenv.config();
-
-const app = express();
-
-app.use(cors());
 app.use(express.json());
 
+// Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/posts', postRoutes);
 app.use('/api/user', userRoutes);
 app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
-app.use("/api/posts", postRoutes);
 
-
+// MongoDB connection
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error(err));
 
+// Test route
 app.get('/', (req, res) => {
   res.send("Welcome to InkPulse API");
 });
