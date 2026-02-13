@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:5000/api";
+const API_URL = 'https://fsd-production-4cc7.up.railway.app';
 
 export const API = {
   authenticateLogin: (loginData) =>
