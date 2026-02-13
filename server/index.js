@@ -7,6 +7,14 @@ import postRoutes from './routes/posts.js';
 import userRoutes from './routes/user.js';
 import path from "path";
 
+
+const cors = require("cors");
+
+app.use(cors({
+  origin: "*",
+  credentials: true
+}));
+
 dotenv.config();
 
 const app = express();
