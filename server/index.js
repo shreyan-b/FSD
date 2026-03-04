@@ -13,7 +13,7 @@ const app = express();   // ✅ Create app first
 
 // ✅ Use middleware AFTER creating app
 app.use(cors({
-  origin: "*",
+  origin: process.env.CLIENT_URL || "*",
   credentials: true
 }));
 

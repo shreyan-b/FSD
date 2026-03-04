@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = 'https://fsd-production-4cc7.up.railway.app';
+const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 export const API = {
   authenticateLogin: (loginData) =>
