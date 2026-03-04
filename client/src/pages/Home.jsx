@@ -11,7 +11,7 @@ import {
 import { useOutletContext } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate, useLocation } from "react-router-dom";
-import { API } from "../service/api";
+import { API, getImageUrl } from "../service/api";
 import Header from "../components/Header.jsx";
 
 const categories = [
@@ -214,7 +214,7 @@ const Home = () => {
               {post.imageUrl && (
                 <Box
                   component="img"
-                  src={`http://localhost:5000${post.imageUrl}`}
+                  src={getImageUrl(post.imageUrl)}
                   alt={post.title}
                   sx={{
                     width: "100%",
