@@ -28,7 +28,7 @@ Installation
 
     Clone the repository
 
-git clone https://github.com/your-username/inkpulse.git
+git clone https://github.com/your-username/FSD.git
 cd inkpulse
 
     Install Server Dependencies
