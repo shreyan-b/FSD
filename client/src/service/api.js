@@ -2,6 +2,15 @@ import axios from "axios";
 
 const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
+// Backend root URL for serving static files (uploads)
+const BACKEND_URL = BASE_URL.replace(/\/api$/, '');
+
+export const getImageUrl = (imageUrl) => {
+  if (!imageUrl) return '';
+  if (imageUrl.startsWith('http')) return imageUrl; // already absolute
+  return `${BACKEND_URL}${imageUrl}`;
+};
+
 export const API = {
   authenticateLogin: (loginData) =>
     axios.post(`${BASE_URL}/auth/login`, loginData).then((res) => res.data),

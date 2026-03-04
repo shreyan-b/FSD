@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { API } from "../service/api";
+import { API, getImageUrl } from "../service/api";
 import { Typography, Box, Button } from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { AuthContext } from "../context/AuthContext";
@@ -87,7 +87,7 @@ const PostDetail = () => {
         {post.imageUrl && (
           <Box
             component="img"
-            src={`http://localhost:5000${post.imageUrl}`}
+            src={getImageUrl(post.imageUrl)}
             alt={post.title}
             sx={{ width: "100%", maxHeight: 400, objectFit: "cover", borderRadius: 2, mb: 3 }}
           />

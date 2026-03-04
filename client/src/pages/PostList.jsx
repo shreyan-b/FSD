@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { API } from "../service/api";
+import { API, getImageUrl } from "../service/api";
 import "./PostList.css"; // optional styling file
 
 const categories = [
@@ -51,7 +51,7 @@ const PostList = () => {
           <div key={post._id} className="post-card">
             <h2 className="post-title">{post.title}</h2>
             <p className="post-meta"><strong>Category:</strong> {post.category} | <strong>Author:</strong> {post.author.username}</p>
-            {post.imageUrl && <img src={post.imageUrl} alt={post.title} className="post-image" />}
+            {post.imageUrl && <img src={getImageUrl(post.imageUrl)} alt={post.title} className="post-image" />}
             <p className="post-snippet">{post.content.slice(0, 150)}...</p>
           </div>
         ))}

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { API } from "../service/api";
+import { API, getImageUrl } from "../service/api";
 import FileUpload from "../components/FileUpload";
 import { useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
@@ -107,7 +107,7 @@ const CreatePost = () => {
 
       {formData.imageUrl && (
         <img
-          src={formData.imageUrl}
+          src={getImageUrl(formData.imageUrl)}
           alt="preview"
           className="post-image-preview"
         />
