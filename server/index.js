@@ -11,12 +11,23 @@ dotenv.config();
 
 const app = express();   // ✅ Create app first
 
+// Disable ETag to prevent 304 responses on Railway
+app.set('etag', false);
+
 // ✅ Use middleware AFTER creating app
 app.use(cors({
   origin: "*"
 }));
 
 app.use(express.json());
+
+// Prevent caching on API routes
+app.use('/api', (req, res, next) => {
+  res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+  res.set('Pragma', 'no-cache');
+  res.set('Expires', '0');
+  next();
+});
 
 // Routes
 app.use('/api/auth', authRoutes);
