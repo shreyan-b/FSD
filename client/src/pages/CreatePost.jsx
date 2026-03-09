@@ -6,7 +6,6 @@ import { AuthContext } from "../context/AuthContext";
 import "./PostCreate.css";
 
 const categories = [
-  "All",
   "Technology",
   "Lifestyle",
   "Travel",
@@ -28,7 +27,7 @@ const CreatePost = () => {
   const location = useLocation();
   const { user } = useContext(AuthContext); // Access user context to get token
   const urlParams = new URLSearchParams(location.search);
-  const initialCategory = urlParams.get("category") || "All";
+  const initialCategory = urlParams.get("category") || "Technology";
 
   const [formData, setFormData] = useState({
     title: "",
@@ -42,13 +41,17 @@ const CreatePost = () => {
 
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
+    if (!file) return;
     const form = new FormData();
     form.append("image", file);
 
-    const response = await API.uploadImage(form, user.token);
-
-    console.log("Uploaded Image URL:", response.imageUrl);
-    setFormData({ ...formData, imageUrl: response.imageUrl });
+    try {
+      const response = await API.uploadImage(form, user.token);
+      console.log("Uploaded Image URL:", response.imageUrl);
+      setFormData({ ...formData, imageUrl: response.imageUrl });
+    } catch (error) {
+      console.error("Image upload failed:", error);
+    }
   };
 
   const handleSubmit = async () => {
@@ -56,11 +59,7 @@ const CreatePost = () => {
       if (!user?.token) {
         throw new Error("User not authenticated");
       }
-      // Don't save category as "All" - treat as empty string
-      const categoryToSave = formData.category === "All" ? "" : formData.category;
-      const postToSend = { ...formData, category: categoryToSave };
-
-      const newPost = await API.createPost(postToSend, user.token);
+      const newPost = await API.createPost(formData, user.token);
       navigate("/home", { state: { newPost } });
     } catch (error) {
       console.error("Create post failed:", error);

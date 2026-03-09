@@ -6,8 +6,15 @@ import authRoutes from './routes/auth.js';
 import postRoutes from './routes/posts.js';
 import userRoutes from './routes/user.js';
 import path from "path";
+import fs from "fs";
 
 dotenv.config();
+
+// Ensure uploads directory exists (Railway has ephemeral filesystem)
+const uploadsDir = path.join(process.cwd(), "uploads");
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir, { recursive: true });
+}
 
 const app = express();   // ✅ Create app first
 
