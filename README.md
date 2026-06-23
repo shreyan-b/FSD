@@ -1,7 +1,7 @@
 InkPulse Blog Application
 Overview
 
-InkPulse is a full-stack blogging platform built with the MERN stack (MongoDB, Express.js, React.js, Node.js). It provides a modern interface for creating, reading, and managing blog posts with user authentication.
+InkPulse is a full-stack blogging platform built with the MERN stack (MongoDB, Express.js, React.js, Node.js). It provides us  a modern interface for creating, reading, and managing blog posts with user authentication.
 Project Structure
 
 inkpulse/
